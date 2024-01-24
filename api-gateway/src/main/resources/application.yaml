@@ -26,3 +26,8 @@ spring:
             predicates:
               - Path=/main/test
               - Method=GET
+          - id: name
+            uri: lb://eclient2
+            predicates:
+              - Path=/new/name
+              - Method=GET
