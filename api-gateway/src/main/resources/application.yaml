@@ -1,0 +1,28 @@
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+
+logging:
+  pattern:
+    console: "%C{1.} [%-5level] %d{HH:mm:ss} - %msg%n"
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        location:
+          enable: true
+          lower-case-service-id: true
+      mvc:
+        routes:
+          - id: test
+            uri: lb://eclient
+            predicates:
+              - Path=/main/test
+              - Method=GET
